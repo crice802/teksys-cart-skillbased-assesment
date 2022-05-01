@@ -62,20 +62,20 @@ public abstract class TheSystem {
 		}
 	}
 
-//	public Boolean add(Item item) {
-//		// Your code here
-//		if (item == null) {
-//			return false;
-//		} else if (getItemCollection() != null && item.getAvailableQuantity() > 0) {
-//			item.setQuantity(item.getQuantity()+ 1);
-//			return true;
-//		} else if (getItemCollection() == null && item.getAvailableQuantity() > 0) {
-//			item.setQuantity(item.getQuantity()+ 1);
-//			return true;
-//		} else {
-//			return false;
-//		}
-//	}
+	public Boolean add(Item item) {
+		if (item == null) {
+			return false;
+		} else if (itemCollection.containsKey(item.getItemName())) {
+			Item collItem = this.itemCollection.get(item.getItemName());
+			int currentQuant = collItem.getQuantity();
+			collItem.setQuantity(currentQuant + 1);
+			itemCollection.put(item.getItemName(), collItem); // Put replaces a value if it already contains it.
+			return true;
+		} else {
+			itemCollection.put(item.getItemName(), item);
+			return true;
+		}
+	}
 
 	public Item remove(String itemName) {
 		// Your code here
